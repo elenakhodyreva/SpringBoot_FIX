@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+<#if user ??>
+    <div class="form-style-2-heading">Здравствуйте, ${user.name}!</div>
+</#if>
 <div class="form-style-2">
     <div class="form-style-2-heading">Книги</div>
     <table border=1>

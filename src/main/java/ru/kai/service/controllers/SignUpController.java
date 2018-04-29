@@ -22,6 +22,6 @@ public class SignUpController {
     public String signUp(UserForm userForm){
 
         service.signUp(userForm);
-        return "redirect:users";
+        return "redirect:/login";
     }
 }
