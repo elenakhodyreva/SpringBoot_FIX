@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.Authentication;
 import ru.kai.service.forms.BookForm;
 
 import javax.persistence.*;
@@ -21,14 +22,16 @@ public class Book {
     private Long id;
 
     private String name;
-    private String author;
+
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private Author author;
     private Integer count;
     private Integer cost;
 
     public static Book from(BookForm form){
         return Book.builder()
                 .name(form.getName())
-                .author(form.getAuthor())
                 .count(form.getCount())
                 .cost(form.getCost())
                 .build();

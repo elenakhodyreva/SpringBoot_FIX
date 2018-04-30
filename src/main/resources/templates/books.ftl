@@ -1,3 +1,4 @@
+<#ftl encoding='UTF-8'>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +9,7 @@
 <#if user ??>
     <div class="form-style-2-heading">Здравствуйте, ${user.name}!</div>
 </#if>
+
 <div class="form-style-2">
     <div class="form-style-2-heading">Книги</div>
     <table border=1>
@@ -26,7 +28,7 @@
             <tr>
                 <td>${book.id}</td>
                 <td>${book.name}</td>
-                <td>${book.author}</td>
+                <td>${book.author.authorName}</td>
                 <td>${book.count}</td>
                 <td>${book.cost}</td>
             </tr>
@@ -65,19 +67,16 @@
 
 <div class="form-style-2">
     <div class="form-style-2-heading">Редактировать данные о книге</div>
-    <form method="POST" action="/products" accept-charset="UTF-8">
+    <form method="POST" action="/books?upd" accept-charset="UTF-8">
 
         <table>
-            <tr><td>Название книги</td><td><input type= "text" name="newBookName"  maxlength="50"
-                                                  required id="newBookName"/>
+
+            <tr><td>Название книги</td><td><input type= "text" name="name"  maxlength="50"
+                                                  required id="name"/>
             </td></tr>
 
-            <tr><td>Количество</td><td><input type= "text" pattern="\d*" name="newCount" maxlength="4"
-                                              required id="newCount"/>
-            </td></tr>
-
-            <tr><td>Стоимость, руб</td><td><input type= "text" pattern="\d*" name="newCost" maxlength="7"
-                                                  required id="newCost"/>
+            <tr><td>Стоимость, руб</td><td><input type= "text" pattern="\d*" name="cost" maxlength="7"
+                                                  required id="cost"/>
             </td></tr>
 
         </table>
@@ -90,11 +89,11 @@
 
 <div class="form-style-2">
     <div class="form-style-2-heading">Удалить книгу</div>
-    <form method="POST" action="/products" accept-charset="UTF-8">
+    <form method="POST" action="/books?del" accept-charset="UTF-8">
 
         <table>
-            <tr><td>ID</td><td><input type= "text" pattern="\d*" name="idForDelete" maxlength="4"
-                                      required id="idForDelete"/>
+            <tr><td>ID</td><td><input type= "text" pattern="\d*" name="id" maxlength="4"
+                                      required id="id"/>
             </td></tr>
         </table>
 
