@@ -48,7 +48,7 @@ public class BooksController {
         //сначала проверить, есть ли уже книга с таким названием
         Optional<Book> bookCandidate = booksRepository.findOneByName(bookForm.getName());
 
-        //если нет такой, тогда имеет смысл создавать, иначе ничего не делаем
+        //если нет такой, создать, иначе ничего не делаем
         if (!bookCandidate.isPresent()) {
             //пробуем найти автора по имени
             Optional<Author> authorCandidate = authorRepository.findOneByAuthorName(bookForm.getAuthor());
@@ -62,7 +62,7 @@ public class BooksController {
             } else {
                 author = authorCandidate.get();
             }
-            //создать книгу с этим автором, найденным ранее или только что созданным, неважно
+            //создать книгу с этим автором, найденным ранее или только что созданным
             Book book = Book.builder()
                     .name(bookForm.getName())
                     .author(author)
